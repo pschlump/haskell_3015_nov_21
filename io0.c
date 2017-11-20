@@ -1,5 +1,3 @@
-// C - ANSI 
-
 #include <stdio.h>
 
 // Simple output of a line to standard output.

@@ -1,5 +1,4 @@
 import sys
-
 print ( "Some Input Please? ", end='' )
 sys.stdout.flush()
 line = sys.stdin.readline()

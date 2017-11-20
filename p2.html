@@ -17,19 +17,20 @@
 <h2> C </h2>
 <pre>
      1	#include &lt;stdio.h&gt;
-     2	
-     3	int main ( void ) {
-     4	    char buf[1024];
-     5	    int len;
-     6	
-     7	    printf ( "Some Input Please? " );
-     8	    fgets ( buf, 1024, stdin );
-     9	    len = strlen(buf);
-    10	    if ( len &gt; 0 &amp;&amp; len &lt; 1024 ) {
-    11	        buf[ len - 1 ] = '\0';      // trim off newline
-    12	    }
-    13	    printf ( "Echo of -&gt;%s&lt;-\n", buf );
-    14	}
+     2	#include &lt;string.h&gt;
+     3	
+     4	int main ( void ) {
+     5	    char buf[1024];
+     6	    int len;
+     7	
+     8	    printf ( "Some Input Please? " );
+     9	    fgets ( buf, 1024, stdin );
+    10	    len = strlen(buf);
+    11	    if ( len &gt; 0 &amp;&amp; len &lt; 1024 ) {
+    12	        buf[ len - 1 ] = '\0';      // trim off newline
+    13	    }
+    14	    printf ( "Echo of -&gt;%s&lt;-\n", buf );
+    15	}
 
 </pre>
 
@@ -43,23 +44,21 @@
      6	
      7	int main ( void ) {
      8	    string buf;
-     9	
-    10	    cout &lt;&lt; "Some Input Please? " ;
-    11	    getline(std::cin, buf);
-    12	    cout &lt;&lt; "Echo of -&gt;" &lt;&lt; buf &lt;&lt; "&lt;-" &lt;&lt; std::endl;
-    13	}
+     9	    cout &lt;&lt; "Some Input Please? " ;
+    10	    getline(std::cin, buf);
+    11	    cout &lt;&lt; "Echo of -&gt;" &lt;&lt; buf &lt;&lt; "&lt;-" &lt;&lt; std::endl;
+    12	}
 
 </pre>
 
 <h2> Python </h2>
 <pre>
      1	import sys
-     2	
-     3	print ( "Some Input Please? ", end='' )
-     4	sys.stdout.flush()
-     5	line = sys.stdin.readline()
-     6	line = line.strip('\n')
-     7	print ( "Echo of -&gt;{0}&lt;-".format(line) )
+     2	print ( "Some Input Please? ", end='' )
+     3	sys.stdout.flush()
+     4	line = sys.stdin.readline()
+     5	line = line.strip('\n')
+     6	print ( "Echo of -&gt;{0}&lt;-".format(line) )
 
 </pre>
 

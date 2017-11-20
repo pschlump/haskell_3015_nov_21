@@ -1,0 +1,239 @@
+<body>
+
+<h1> Simle LS/dir Command </h1>
+
+<h2> Haskell </h2>
+<pre>
+     1	import Data.List
+     2	import System.Environment   
+     3	import System.Directory
+     4	
+     5	ls b = do {
+     6	    all &lt;- getDirectoryContents b ;
+     7	    mapM printAnItem ( sort all ) ;
+     8	    }
+     9	
+    10	printAnItem a = if ( a !! 0 ) == '.' 
+    11	                    then putStr("")
+    12	                    else putStrLn ( a )
+    13	
+    14	lsList [] = return []
+    15	lsList (x:xs) = do {
+    16	    ls x ;
+    17	    lsList xs ;
+    18	    return [] ;
+    19	    }
+    20	
+    21	main = do {
+    22	    args &lt;- getArgs ;
+    23	    if ( length args ) &lt; 1
+    24	        then ls(".") 
+    25	        else lsList args
+    26	    }
+
+</pre>
+
+<h2> C </h2>
+<pre>
+     1	#include &lt;stdio.h&gt;
+     2	#include &lt;stdlib.h&gt;
+     3	#include &lt;string.h&gt;
+     4	#include &lt;sys/types.h&gt;
+     5	#include &lt;dirent.h&gt;
+     6	
+     7	char *strdup (const char *s) {
+     8	    char *d = malloc (strlen (s) + 1);   // Space for length plus nul
+     9	    if (d == NULL) return NULL;          // No memory
+    10	    strcpy (d,s);                        // Copy the characters
+    11	    return d;                            // Return the new string
+    12	}
+    13	
+    14	int cmpStr (const void * a, const void * b)
+    15	{
+    16	    return strcmp (*(const char **) a, *(const char **) b);
+    17	}
+    18	
+    19	void ls ( char *dir ) {
+    20	    struct dirent *ep;         
+    21	    DIR *dp;
+    22	    int nitems = 0;
+    23	    int max = 250;
+    24	    char **list = (char **)malloc ( max * sizeof ( char * ) );
+    25	
+    26	    dp = opendir (dir);
+    27	    if (dp == NULL) { 
+    28	        fprintf ( stderr, "Couldn't open the directory %s\n", dir );
+    29	        exit(1);
+    30	    }
+    31	
+    32	    while ((ep = readdir (dp)) != NULL) {
+    33	        if ( ep-&gt;d_name[0] != '.' ) {
+    34	            if ( max &lt;= nitems ) {
+    35	                max += 250;
+    36	                list = (char **)realloc ( list, max * sizeof ( char * ) );
+    37	            }
+    38	            list[nitems] = strdup ( ep-&gt;d_name );
+    39	            nitems++;
+    40	        }
+    41	    }
+    42	    (void) closedir (dp);
+    43	
+    44	    qsort(list, nitems, sizeof(char *), cmpStr);
+    45	
+    46	    for ( int i = 0; i &lt; nitems; i++ ) {
+    47	        printf ( "%s\n", list[i] );
+    48	    }
+    49	
+    50	    for ( int i = 0; i &lt; nitems; i++ ) {
+    51	        (void) free ( list[i] );
+    52	    }
+    53	    (void) free ( list );
+    54	}
+    55	
+    56	int main (int argc, char *argv[]) {
+    57	
+    58	    if ( argc &lt;= 1 ) {
+    59	        ls ( "." );
+    60	    } else {
+    61	        for ( int i = 1; i &lt; argc; i++ ) {
+    62	            ls ( argv[i] );
+    63	        }
+    64	    }
+    65	    return 0;
+    66	
+    67	}
+
+</pre>
+
+<h2> C++ </h2>
+<pre>
+     1	
+     2	#include &lt;stdlib.h&gt;
+     3	#include &lt;dirent.h&gt;
+     4	#include &lt;iostream&gt;
+     5	#include &lt;vector&gt;
+     6	
+     7	void ls ( char *dir ) {
+     8	    struct dirent *ep;         
+     9	    DIR *dp;
+    10	    std::vector&lt;std::string&gt; names;
+    11	
+    12	    dp = opendir (dir);
+    13	    if (dp == NULL) { 
+    14	        std::cerr &lt;&lt; "Couldn't open the directory " &lt;&lt; dir &lt;&lt; std::endl;
+    15	        exit(1);
+    16	    }
+    17	
+    18	    while ((ep = readdir (dp)) != NULL) {
+    19	        // std::cout &lt;&lt; ep-&gt;d_name &lt;&lt; std::endl;
+    20	        names.push_back(ep-&gt;d_name);
+    21	    }
+    22	    (void) closedir (dp);
+    23	
+    24	    std::sort(names.begin(), names.end());
+    25	
+    26	    for(auto &amp; currentName : names) {
+    27	        if ( currentName.substr(0,1) != "." ) {
+    28	            std::cout &lt;&lt; currentName &lt;&lt; std::endl;
+    29	        }
+    30	    }
+    31	    
+    32	}
+    33	
+    34	int main (int argc, char *argv[]) {
+    35	
+    36	    if ( argc &lt;= 1 ) {
+    37	        ls ( (char *)"." );
+    38	    } else {
+    39	        for ( int i = 1; i &lt; argc; i++ ) {
+    40	            ls ( argv[i] );
+    41	        }
+    42	    }
+    43	    return 0;
+    44	
+    45	}
+
+</pre>
+
+<h2> Python </h2>
+<pre>
+     1	import os
+     2	import sys
+     3	
+     4	def ls(aFn):
+     5	    fn = []
+     6	    for filename in os.listdir(aFn):
+     7	        if filename[0:1] != ".":
+     8	            fn.insert ( 0, filename )
+     9	
+    10	    fn.sort()
+    11	    for filename in fn:
+    12	        print ( filename )
+    13	
+    14	
+    15	if len(sys.argv) &lt;= 1:
+    16	    ls(".")
+    17	else:
+    18	    for i in range ( 1, len(sys.argv) ):
+    19	        ls(sys.argv[i])
+
+</pre>
+
+<h2> JavaScript / Node.js </h2>
+<pre>
+     1	const testFolder = '.';
+     2	const fs = require('fs');
+     3	
+     4	fs.readdir(testFolder, (err, files) =&gt; {
+     5	    files.sort();
+     6	    files.forEach(file =&gt; {
+     7	        if ( file.substring(0,1) != '.' ) {
+     8	            console.log(file);
+     9	        }
+    10	    });
+    11	})
+
+</pre>
+
+<h2> Go / GoLang </h2>
+<pre>
+     1	package main
+     2	
+     3	import (
+     4	    "fmt"
+     5	    "io/ioutil"
+     6	    "os"
+     7	    "sort"
+     8	)
+     9	
+    10	func main() {
+    11	    if len(os.Args) &gt; 1 {
+    12	        for _, s := range os.Args[1:] {
+    13	            ls(s)
+    14	        }
+    15	    } else {
+    16	        ls(".")
+    17	    }
+    18	}
+    19	
+    20	func ls(dir string) {
+    21	    files, err := ioutil.ReadDir(dir)
+    22	    if err != nil {
+    23	        fmt.Fprintf(os.Stderr, "Error opeing directory, %s\n", err)
+    24	        os.Exit(1)
+    25	    }
+    26	    var list []string
+    27	    for _, file := range files {
+    28	        if file.Name()[0:1] != "." {
+    29	            list = append(list, file.Name())
+    30	        }
+    31	    }
+    32	    sort.Strings(list)
+    33	    for _, fn := range list {
+    34	        fmt.Printf("%s\n", fn)
+    35	    }
+    36	}
+
+</pre>
+
+</body>

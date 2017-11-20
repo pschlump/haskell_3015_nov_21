@@ -1,0 +1,8 @@
+c-run
+cpp-run
+go-run
+io0
+*.hi
+*.o
+io1
+t1

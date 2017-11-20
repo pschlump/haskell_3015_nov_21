@@ -18,31 +18,29 @@
      4	
      5	// Simple output of a line to standard output.
      6	void example1() {
-     7		printf("This is an output line of text, with a number %d\n", 121212);
+     7	    printf("This is an output line of text, with a number %d\n", 121212);
      8	}
      9	
     10	int main( int argc, char *argv[]) {
-    11		example1();
-    12		return ( 0 );
+    11	    example1();
+    12	    return ( 0 );
     13	}
 
 </pre>
 
 <h2> C++ </h2>
 <pre>
-     1	// C++ C++11
+     1	#include &lt;iostream&gt;
      2	
-     3	#include &lt;iostream&gt;
-     4	
-     5	// Simple output of a line to standard output.
-     6	void example1() {
-     7		std::cout &lt;&lt; "This is an output line of text, with a number " &lt;&lt; 121212 &lt;&lt; std::endl;
-     8	}
-     9	
-    10	int main( int argc, char *argv[]) {
-    11		example1();
-    12		return ( 0 );
-    13	}
+     3	// Simple output of a line to standard output.
+     4	void example1() {
+     5	    std::cout &lt;&lt; "This is an output line of text, with a number " &lt;&lt; 121212 &lt;&lt; std::endl;
+     6	}
+     7	
+     8	int main( int argc, char *argv[] ) {
+     9	    example1();
+    10	    return ( 0 );
+    11	}
 
 </pre>
 
@@ -51,7 +49,7 @@
      1	# Python 3 
      2	
      3	def example1():
-     4		print ( "This is an output line of text, with a number {0}".format( 121212 ) );
+     4	    print ( "This is an output line of text, with a number {0}".format( 121212 ) );
      5	
      6	example1();
 
@@ -60,7 +58,7 @@
 <h2> JavaScript / Node.js </h2>
 <pre>
      1	function example1() {
-     2		console.log ( "This is an output line of text, with a number ", 121212 );
+     2	    console.log ( "This is an output line of text, with a number", 121212 );
      3	}
      4	
      5	example1();
@@ -77,11 +75,11 @@
      6	
      7	// Simple output of a line to standard output.
      8	func example1() {
-     9		fmt.Printf("This is an output line of text, with a number %d\n", 121212)
+     9	    fmt.Printf("This is an output line of text, with a number %d\n", 121212)
     10	}
     11	
     12	func main() {
-    13		example1()
+    13	    example1()
     14	}
 
 </pre>

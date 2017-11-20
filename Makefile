@@ -62,13 +62,18 @@ io0.test1: io0 io0_c io0_cpp
 	go run io0.go >tmp/go.out
 	diff tmp/go.out ref/io0.ref
 
+pages: p0.html p1.html
+
+p0.html: p0.m4.html
+	m4 -P p0.m4.html >p0.html
+
 p1.html: p1.m4.html Makefile io0.hs io0.py io0.c io0.cpp io0.js io0.go fixHtml.sh
 	mkdir -p ./tmp
-	cat -n io0.hs  | fixHtml.sh >tmp/io0.hs.txt
-	cat -n io0.py  | fixHtml.sh >tmp/io0.py.txt
-	cat -n io0.c   | fixHtml.sh >tmp/io0.c.txt
-	cat -n io0.cpp | fixHtml.sh >tmp/io0.cpp.txt
-	cat -n io0.js  | fixHtml.sh >tmp/io0.js.txt
-	cat -n io0.go  | fixHtml.sh >tmp/io0.go.txt
+	fix0.sh < io0.hs  | cat -n | fixHtml.sh >tmp/io0.hs.txt
+	fix0.sh < io0.py  | cat -n | fixHtml.sh >tmp/io0.py.txt
+	fix0.sh < io0.c   | cat -n | fixHtml.sh >tmp/io0.c.txt
+	fix0.sh < io0.cpp | cat -n | fixHtml.sh >tmp/io0.cpp.txt
+	fix0.sh < io0.js  | cat -n | fixHtml.sh >tmp/io0.js.txt
+	fix0.sh < io0.go  | cat -n | fixHtml.sh >tmp/io0.go.txt
 	m4 -P p1.m4.html >p1.html
  

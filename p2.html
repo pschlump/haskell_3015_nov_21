@@ -1,0 +1,105 @@
+<body>
+
+<h1> Read a line after a prompt </h1>
+
+<h2> Haskell </h2>
+<pre>
+     1	import System.IO
+     2	
+     3	main = do  
+     4	    putStr "Some Input Please? "  
+     5	    hFlush stdout
+     6	    txt &lt;- getLine  
+     7	    putStrLn ("Echo of -&gt;" ++ txt ++ "&lt;-")  
+
+</pre>
+
+<h2> C </h2>
+<pre>
+     1	#include &lt;stdio.h&gt;
+     2	
+     3	int main ( void ) {
+     4	    char buf[1024];
+     5	    int len;
+     6	
+     7	    printf ( "Some Input Please? " );
+     8	    fgets ( buf, 1024, stdin );
+     9	    len = strlen(buf);
+    10	    if ( len &gt; 0 &amp;&amp; len &lt; 1024 ) {
+    11	        buf[ len - 1 ] = '\0';      // trim off newline
+    12	    }
+    13	    printf ( "Echo of -&gt;%s&lt;-\n", buf );
+    14	}
+
+</pre>
+
+<h2> C++ </h2>
+<pre>
+     1	#include &lt;stdlib.h&gt;
+     2	#include &lt;iostream&gt;
+     3	#include &lt;fstream&gt;
+     4	#include &lt;string&gt;
+     5	using namespace std;
+     6	
+     7	int main ( void ) {
+     8	    string buf;
+     9	
+    10	    cout &lt;&lt; "Some Input Please? " ;
+    11	    getline(std::cin, buf);
+    12	    cout &lt;&lt; "Echo of -&gt;" &lt;&lt; buf &lt;&lt; "&lt;-" &lt;&lt; std::endl;
+    13	}
+    14	
+
+</pre>
+
+<h2> Python </h2>
+<pre>
+     1	import sys
+     2	
+     3	print ( "Some Input Please? ", end='' )
+     4	sys.stdout.flush()
+     5	line = sys.stdin.readline()
+     6	line = line.strip('\n')
+     7	print ( "Echo of -&gt;{0}&lt;-".format(line) )
+
+</pre>
+
+<h2> JavaScript / Node.js </h2>
+<pre>
+     1	var readline = require('readline');
+     2	
+     3	var rl = readline.createInterface({
+     4	    input: process.stdin,
+     5	    output: process.stdout,
+     6	    terminal: true
+     7	});
+     8	
+     9	process.stdout.write ( "Some Input Please? " );
+    10	rl.on('line', function (line) {
+    11	    console.log ( "Echo    of -&gt;" + line + "&lt;-" );
+    12	    process.exit();
+    13	});
+
+</pre>
+
+<h2> Go / GoLang </h2>
+<pre>
+     1	package main
+     2	
+     3	import (
+     4	    "bufio"
+     5	    "fmt"
+     6	    "os"
+     7	)
+     8	
+     9	func main() {
+    10	    fmt.Printf("Some Input Please? ")
+    11	    scanner := bufio.NewScanner(os.Stdin)
+    12	    scanner.Scan()
+    13	    line := scanner.Text()
+    14	    fmt.Printf("Echo of -&gt;%s&lt;-\n", line)
+    15	}
+
+</pre>
+
+</body>

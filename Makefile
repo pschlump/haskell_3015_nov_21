@@ -23,7 +23,7 @@ cpp_echo: cpp_echo.cpp
 
 
 clean:
-	rm -f c-run cpp-run go-run io0 io0.hi io0.o io1 io1.hi io1.o t1 t1.hi t1.o a.out cpp_echo c_echo io0_c io0_cpp
+	rm -f c-run cpp-run go-run io0 io0.hi io0.o io1 io1.hi io1.o t1 t1.hi t1.o a.out cpp_echo c_echo io0_c io0_cpp io1_c io1_cpp
 
 test1: io0.test1
 

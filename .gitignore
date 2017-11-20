@@ -6,6 +6,8 @@ p0.m4.html
 tmp/
 cpp-run
 go-run
+io1_c 
+io1_cpp
 io0
 *.hi
 *.o

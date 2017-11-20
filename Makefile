@@ -25,7 +25,7 @@ clean:
 
 test1: io0.test1
 
-pages: p0.html p1.html p2.html p3.html
+pages: p0.html p1.html p2.html p3.html p4.html
 
 
 p0.html: p0.m4.html
@@ -162,19 +162,17 @@ io3_c: io3.c
 	cc -o io3_c io3.c
 
 io3_cpp: io3.cpp
-	g++ -o io3_cpp io3.cpp
+	clang++ -std=c++11 -stdlib=libc++ -o io3_cpp io3.cpp
 
-# TODO: sort in C
-# TODO: sort in C++
 io3.test1: io3 io3_c io3_cpp
 	mkdir -p ./tmp
 	ls -1 >ref/io3.ref
 	./io3 >tmp/hs.out
 	diff -w tmp/hs.out ref/io3.ref
 	./io3_c >tmp/c.out
-	-diff -w tmp/c.out ref/io3.ref
+	diff -w tmp/c.out ref/io3.ref
 	./io3_cpp >tmp/cpp.out
-	-diff -w tmp/cpp.out ref/io3.ref
+	diff -w tmp/cpp.out ref/io3.ref
 	python3 io3.py >tmp/py.out
 	diff -w tmp/py.out ref/io3.ref
 	node io3.js >tmp/js.out
@@ -190,13 +188,13 @@ io3.test2: io3 io3_c io3_cpp
 	./io3 ./ref ./tmp >tmp/hs.out
 	diff -w tmp/hs.out ref/io3.ref
 	./io3_c ./ref ./tmp >tmp/c.out
-	-diff -w tmp/c.out ref/io3.ref
+	diff -w tmp/c.out ref/io3.ref
 	./io3_cpp ./ref ./tmp >tmp/cpp.out
-	-diff -w tmp/cpp.out ref/io3.ref
+	diff -w tmp/cpp.out ref/io3.ref
 	python3 io3.py ./ref ./tmp >tmp/py.out
 	diff -w tmp/py.out ref/io3.ref
 	node io3.js ./ref ./tmp >tmp/js.out
-	diff -w tmp/js.out ref/io3.ref
+	-diff -w tmp/js.out ref/io3.ref
 	go run io3.go ./ref ./tmp >tmp/go.out
 	diff -w tmp/go.out ref/io3.ref
 

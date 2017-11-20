@@ -1,4 +1,9 @@
 c-run
+,a
+io0_c
+io0_cpp
+p0.m4.html
+tmp/
 cpp-run
 go-run
 io0

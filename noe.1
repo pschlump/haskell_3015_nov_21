@@ -1,0 +1,10 @@
+> time go build -o go-run io.go
+go build -o go-run io.go  0.19s user 0.08s system 115% cpu 0.236 total
+> time cc io.c -o c-run
+cc io.c -o c-run  0.03s user 0.01s system 91% cpu 0.047 total
+> time c++ io.cpp -o cpp-run
+c++ io.cpp -o cpp-run  0.34s user 0.04s system 97% cpu 0.382 total
+> time ghc --make io1.hs
+[1 of 1] Compiling Main             ( io1.hs, io1.o )
+Linking io1 ...
+ghc --make io1.hs  0.86s user 0.15s system 98% cpu 1.031 total

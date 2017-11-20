@@ -1,35 +1,21 @@
 
-all: 
+all:  pages
 
-  
-t1:
-	ghc --make t1.hs
-
-
-ls: ls.hs
-	ghc --make ls.hs
-
-echo: echo.hs
-	ghc --make echo.hs
-
-c_echo: c_echo.c
-	cc -o c_echo c_echo.c
-
-cpp_echo: cpp_echo.cpp
-	g++ -o cpp_echo cpp_echo.cpp
-
-
+test: io0.test1 io1.test1 io2.test1 io3.test1 io3.test2
 
 clean:
-	rm -f c-run cpp-run go-run io0 io0.hi io0.o io1 io1.hi io1.o t1 t1.hi t1.o a.out cpp_echo c_echo io0_c io0_cpp io1_c io1_cpp io3 io2 io2_c io2_cpp io3_cpp io3_c io3
-
-test1: io0.test1
-
-pages: p0.html p1.html p2.html p3.html p4.html
+	rm -f c-run cpp-run go-run io0 io0.hi io0.o io1 io1.hi io1.o t1 t1.hi t1.o a.out cpp_echo c_echo io0_c io0_cpp io1_c io1_cpp io3 io2 io2_c io2_cpp io3_cpp io3_c io3 *.hi *.o
 
 
-p0.html: p0.m4.html
+pages: p0.html p1.html p2.html p3.html p4.html p5.html
+
+
+p0.html: p0.m4.html Makefile
 	m4 -P p0.m4.html >p0.html
+
+p5.html: p5.m4.html Makefile fix0.sh fixHtml.sh t1.hs
+	fix0.sh < t1.hs  | cat -n | fixHtml.sh >tmp/t1.hs.txt
+	m4 -P p5.m4.html >p5.html
 
 
 

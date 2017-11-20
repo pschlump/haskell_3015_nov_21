@@ -1,4 +1,3 @@
-
 import System.IO
 
 main = do  
@@ -7,5 +6,3 @@ main = do
     hFlush stdout
     line <- getLine  
     putStrLn ( "Your input ->" ++ line  ++ "<-" )
-
-

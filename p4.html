@@ -1,6 +1,6 @@
 <body>
 
-<h1> Simle LS/dir Command </h1>
+<h1> Simple ls/dir Command </h1>
 
 <h2> Haskell </h2>
 <pre>
@@ -181,17 +181,26 @@
 
 <h2> JavaScript / Node.js </h2>
 <pre>
-     1	const testFolder = '.';
-     2	const fs = require('fs');
-     3	
-     4	fs.readdir(testFolder, (err, files) =&gt; {
-     5	    files.sort();
-     6	    files.forEach(file =&gt; {
-     7	        if ( file.substring(0,1) != '.' ) {
-     8	            console.log(file);
-     9	        }
-    10	    });
-    11	})
+     1	const fs = require('fs');
+     2	
+     3	function ls ( testFolder ) {
+     4	    fs.readdir(testFolder, (err, files) =&gt; {
+     5	        files.sort();
+     6	        files.forEach(file =&gt; {
+     7	            if ( file.substring(0,1) != '.' ) {
+     8	                console.log(file);
+     9	            }
+    10	        });
+    11	    });
+    12	}
+    13	
+    14	if ( process.argv.length &gt; 2 ) {
+    15	    for ( var i = 2; i &lt; process.argv.length; i++ ) {
+    16	        ls ( process.argv[i] );
+    17	    }
+    18	} else {
+    19	    ls ( "." );
+    20	}
 
 </pre>
 

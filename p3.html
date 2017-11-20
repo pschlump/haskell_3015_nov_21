@@ -1,0 +1,89 @@
+<body>
+
+<h1> Echo Command Line </h1>
+
+<h2> Haskell </h2>
+<pre>
+     1	import System.Environment   
+     2	import Data.List  
+     3	  
+     4	-- To get name of program in MacOS/Linux/Unix/Solaris: progName &lt;- getProgName  
+     5	
+     6	main = do {
+     7	    args &lt;- getArgs ;
+     8	    mapM blankAfter args ;
+     9	    putStrLn "" ;
+    10	    }
+    11	
+    12	blankAfter a = putStr ( a ++ " " )
+
+</pre>
+
+<h2> C </h2>
+<pre>
+     1	#include &lt;stdio.h&gt;
+     2	
+     3	int main ( int argc, char *argv[] ) {
+     4	    for ( int i = 1; i &lt; argc; i++ ) {
+     5	         printf ( "%s%s", argv[i], ( ( i+1 ) &lt; argc ) ? " " : "\n" );
+     6	    }
+     7	    return 0;
+     8	}
+
+</pre>
+
+<h2> C++ </h2>
+<pre>
+     1	#include &lt;iostream&gt;
+     2	
+     3	int main ( int argc, char *argv[] ) {
+     4	    for ( int i = 1; i &lt; argc; i++ ) {
+     5	        std::cout &lt;&lt; argv[i];
+     6	        if ( ( i+1 ) &lt; argc ) {
+     7	            std::cout &lt;&lt; " ";
+     8	        }
+     9	    }
+    10	    std::cout &lt;&lt; std::endl;
+    11	    return 0;
+    12	}
+
+</pre>
+
+<h2> Python </h2>
+<pre>
+     1	import sys
+     2	
+     3	for i in range ( 1, len(sys.argv) ):
+     4	    print ( sys.argv[i] + " ", end='' )
+     5	print ( "" )
+
+</pre>
+
+<h2> JavaScript / Node.js </h2>
+<pre>
+     1	for ( var i = 2; i &lt; process.argv.length; i++ ) {
+     2	    process.stdout.write ( process.argv[i] + " " );
+     3	}
+     4	process.stdout.write ( "\n" );
+
+</pre>
+
+<h2> Go / GoLang </h2>
+<pre>
+     1	package main
+     2	
+     3	import (
+     4	    "fmt"
+     5	    "os"
+     6	)
+     7	
+     8	func main() {
+     9	    for _, s := range os.Args[1:] {
+    10	        fmt.Printf("%s ", s)
+    11	    }
+    12	    fmt.Printf("\n")
+    13	}
+
+</pre>
+
+</body>

@@ -9,7 +9,9 @@ go-run
 io1_c 
 io1_cpp
 .bak*
+io3
 io2
+io3
 io2_c
 io2_cpp
 io3_cpp

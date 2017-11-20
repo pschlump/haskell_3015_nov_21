@@ -8,6 +8,12 @@ cpp-run
 go-run
 io1_c 
 io1_cpp
+.bak*
+io2
+io2_c
+io2_cpp
+io3_cpp
+io3_c
 io0
 *.hi
 *.o

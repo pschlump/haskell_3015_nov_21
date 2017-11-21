@@ -1,7 +1,10 @@
 
 all:  pages
 
-test: io0.test1 io1.test1 io2.test1 io3.test1 io3.test2
+test: io0.test1 io1.test1 io2.test1 io3.test1 io3.test2 t1
+
+t1: t1.hs
+	ghc --make t1.hs
 
 clean:
 	rm -f c-run cpp-run go-run io0 io0.hi io0.o io1 io1.hi io1.o t1 t1.hi t1.o a.out cpp_echo c_echo io0_c io0_cpp io1_c io1_cpp io3 io2 io2_c io2_cpp io3_cpp io3_c io3 *.hi *.o
